@@ -1,0 +1,42 @@
+body {
+  background: url("/images/background.png") no-repeat fixed top;
+  background-size: cover;
+}
+
+.nav-like ul li {list-style-type: none;}
+
+.nav-like {
+	text-align: center;
+}
+
+.button span {
+	text-indent: -9999999px;
+	display: inline-block;
+}
+
+.button {
+	border: none;
+	cursor: pointer;
+}
+
+#load-game {
+	background:url("/images/button_start.png") no-repeat;
+	width:435px;
+    height:112px;
+}
+
+#options {
+	background:url("/images/button_options.png") no-repeat;
+	width:429px;
+    height:111px;
+}
+
+#credits {
+	background:url("/images/button_credits.png") no-repeat;
+	width:429px;
+    height:111px;
+}
+
+.game {
+	background:url("/images/clock1.png") no-repeat center;
+}
