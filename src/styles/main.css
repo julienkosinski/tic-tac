@@ -37,6 +37,8 @@ body {
     height:111px;
 }
 
-.game {
-	background:url("/images/clock1.png") no-repeat center;
+#clock {
+	width: 440px;
+	height: 456px;
+    margin: 0 auto;
 }

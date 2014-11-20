@@ -35,7 +35,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all'],
+        // tasks: ['newer:jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
@@ -352,7 +352,7 @@ module.exports = function (grunt) {
     protractor: {
         options: {
             keepAlive: false,
-            configFile: "test/config/protractor.conf.js",
+            configFile: 'test/config/protractor.conf.js',
 
             args: {
                 seleniumServerJar: 'node_modules/protractor/selenium/selenium-server-standalone-2.39.0.jar',
