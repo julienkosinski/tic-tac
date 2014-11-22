@@ -1,4 +1,5 @@
 'use strict';
+/* global Kinetic */
 
 /**
  * @ngdoc function
@@ -16,6 +17,10 @@ angular.module('ticTacApp')
 			height: 456
 		});
 		
+
+		var currentClock = clockService.generatedTime();
+		console.log(currentClock);
+
 		var imageClock = new Image();
 		imageClock.onload = function() {
 			var clock = new Kinetic.Image({
@@ -34,17 +39,13 @@ angular.module('ticTacApp')
 		var firstHandClockImage = new Image();
 		firstHandClockImage.onload = function() {
 
-
-			var tempSetMinute = 0;
-			var choisenDegree1 = (tempSetMinute/(60/360))+180;
-
 			var firstHandClock = new Kinetic.Image({
-				x: scene.getWidth()/2.04,
-				y: scene.getHeight()/2.04,
+				x: scene.getWidth()/2.01,
+				y: scene.getHeight()/2.09,
 				image: firstHandClockImage,
 				width: 6,
 				height: 120,
-				rotation: choisenDegree1
+				rotation: currentClock.minutesTransf
 			});
 			var firstHandClockImageLayer = new Kinetic.Layer();
 
@@ -52,24 +53,21 @@ angular.module('ticTacApp')
 			scene.add(firstHandClockImageLayer);
 
 		}; 
-		firstHandClockImage.src='/images/firstHand.png'
+		firstHandClockImage.src='/images/firstHand.png';
 
 
 		var secondHandClockImage = new Image();
 		secondHandClockImage.onload = function() {
 			
 			////// Need to add offset to the hour hand according to the minute hand !!!
-
-			var tempSetHour = 3;
-			var choisenDegree2 = (tempSetHour/(12/360))+180;
 			
 			var secondHandClock = new Kinetic.Image({
-				x: scene.getWidth()/2.04,
-				y: scene.getHeight()/2.04,
+				x: scene.getWidth()/2.01,
+				y: scene.getHeight()/2.09,
 				image: secondHandClockImage,
 				width: 6,
 				height: 80,
-				rotation: choisenDegree2
+				rotation: currentClock.hoursTransf
 			});
 			var secondHandClockImageLayer = new Kinetic.Layer();
 
@@ -77,6 +75,6 @@ angular.module('ticTacApp')
 			scene.add(secondHandClockImageLayer);
 
 		}; 
-		secondHandClockImage.src='/images/secondHand.png'
+		secondHandClockImage.src='/images/secondHand.png';
 
   });
