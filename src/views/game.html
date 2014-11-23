@@ -1,1 +1,18 @@
-<div class="game"><div id="clock"></div></div>
+<div class="game">
+	<div id="clock"></div>
+	<div class="choice">
+		<div class="selectors">
+			<button class="selectup button" ng-click="addNumberHours()"></button>
+			<button class="selectdown button" ng-click="removeNumberHours()"></button>
+		</div>
+		<div class="number">{{numberHours}}</div>
+	</div>
+	<div class="choice">
+		<div class="selectors">
+			<button class="selectup button" ng-click="addNumberMinutes()"></button>
+			<button class="selectdown button" ng-click="removeNumberMinutes()"></button>
+		</div>
+		<div class="number">{{numberMinutes}}</div>
+	</div>
+	<button id="check" class="button" ng-click="displayNgDialog()"></button>
+</div>

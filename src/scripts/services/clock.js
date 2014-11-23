@@ -25,10 +25,16 @@ angular.module('ticTacApp')
 
     	clockTime.minutesTransf = (minutes/(60/360))+180;
     	if (hours > 12) { // Because it is in french hour format
-    		clockTime.hoursTransf = ((hours-12)/(12/360))+(30/(60/minutes))+180; // Just remove for calculation the notion of pm french hour :-).
+    		if(minutes === 60) {
+    			minutes = 2;
+    		}
+			clockTime.hoursTransf = ((hours-12)/(12/360))+(30/(60/minutes))+180; // Just remove for calculation the notion of pm french hour :-).
     	} else {
-    		clockTime.hoursTransf = (hours/(12/360))+(30/(60/minutes))+180; // (30/(60/minutes)) is about adding rotation according to the state of the minutes. (hours/(12/360)) convert hour in degree. +180 is because at degree 0 it needs an offset of 180. 
-    	}
+    		if(minutes === 60) { // Avoid a bug when o'clock
+    			minutes = 2;
+    		}
+    		clockTime.hoursTransf = (hours/(12/360))+(30/(60/minutes))+180; // (30/(60/minutes)) is about adding rotation according to the state of the minutes. (hours/(12/360)) convert hour in degree. +180 is because at degree 0 it needs an offset of 180.
+    	} 
     	return clockTime;
     	// Return an object containing transformed hours, minutes and return a passed in parameter timeState.
     }
@@ -50,7 +56,11 @@ angular.module('ticTacApp')
         	return clockTime;
         },
         checkInputAndTime: function(input, time) {
-        	//Verify that the two objects countain the same value, use underscore for that :-)
+        	if (input.hours === time.hours && input.minutes === time.minutes){
+        		return true;
+        	} else {
+        		return false;
+        	}
         }
     };
   });
