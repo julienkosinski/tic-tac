@@ -11,6 +11,7 @@ angular.module('ticTacApp')
   .service('clockService', function () {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var clockSrc = '/images/clock1.png';
+    var initState = 0;
     function generateTime(hours, minutes){
     	var clockTime = {};
     	
@@ -40,13 +41,16 @@ angular.module('ticTacApp')
     }
     return {
         getClockSrc: function () {
-            //You could also return specific attribute of the form data instead
-            //of the entire data
             return clockSrc;
         },
         setClockSrc: function (newClockSrc) {
-            //You could also set specific attribute of the form data instead
             clockSrc = newClockSrc;
+        },
+        getInitState: function () {
+            return initState;
+        },
+        setInitState: function (newInitState) {
+            initState = newInitState;
         },
         generatedTime: function() {
         	// Return a random Hour and minute and timeState

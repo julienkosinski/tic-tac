@@ -14,6 +14,8 @@ angular.module('ticTacApp')
 		$scope.numberMinutes = 0;
 		$scope.numberHours = 0;
 
+		//Need to clean up this thing because it has a bug, it redraws and change time automatically but often does not display. For that purpose need to set kinetic as a custom directive.
+
 		$scope.kinetic = function() {
 
 			var scene = new Kinetic.Stage({
@@ -78,7 +80,11 @@ angular.module('ticTacApp')
 				scene.add(secondHandClockImageLayer);
 			}; 
 			secondHandClockImage.src='/images/secondHand.png';
-		};$scope.kinetic();
+		};
+		if (clockService.getInitState === 0) {
+			$scope.kinetic();
+			clockService.setInitState = 1;
+		}
 
 		$scope.addNumberMinutes = function() {
 			if($scope.numberMinutes<55){
@@ -104,6 +110,10 @@ angular.module('ticTacApp')
 			}
 		};
 
+		$scope.reinit = function() {
+			clockService.setInitState = 0;
+		}
+
 		$scope.displayNgDialog = function(){
 			var input = {};
 			input.hours = $scope.numberHours;
@@ -111,9 +121,9 @@ angular.module('ticTacApp')
 			var isGood = clockService.checkInputAndTime(input, $scope.currentClock);
 			console.log(isGood);
 			if (isGood) {
-				ngDialog.open({ template: 'perfectChoice.html' });
+				ngDialog.open({ template: 'views/perfectChoice.html' });
 			} else {
-				ngDialog.open({ template: '/scripts/views/notgoodChoice.html', controller: 'GameCtrl'});
+				ngDialog.open({ template: 'views/notgoodChoice.html', controller: 'GameCtrl'});
 			}
 		};
   });
