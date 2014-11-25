@@ -1,5 +1,7 @@
 'use strict';
 
+/* global Kinetic */
+
 /**
  * @ngdoc service
  * @name ticTacApp.clock
@@ -11,10 +13,8 @@ angular.module('ticTacApp')
   .service('clockService', function () {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var clockSrc = '/images/clock1.png';
-    var initState = 0;
+    var clockTime = {};
     function generateTime(hours, minutes){
-    	var clockTime = {};
-    	
     	if (minutes === 60) {
     		clockTime.minutes = 0;
     	}
@@ -46,21 +46,19 @@ angular.module('ticTacApp')
         setClockSrc: function (newClockSrc) {
             clockSrc = newClockSrc;
         },
-        getInitState: function () {
-            return initState;
-        },
-        setInitState: function (newInitState) {
-            initState = newInitState;
+        getClockTime: function () {
+            return clockTime;
         },
         generatedTime: function() {
         	// Return a random Hour and minute and timeState
         	var minutes = _.sample([5,10,15,20,25,30,35,40,45,50,55,60]); // Here, 60 minutes == 0 minutes to have good calculation :-).
         	var hours = _.random(24);
-        	var clockTime = generateTime(hours, minutes);
+        	clockTime = generateTime(hours, minutes);
+        	
         	return clockTime;
         },
-        checkInputAndTime: function(input, time) {
-        	if (input.hours === time.hours && input.minutes === time.minutes){
+        checkInputAndTime: function(input) {
+        	if (input.hours === clockTime.hours && input.minutes === clockTime.minutes){
         		return true;
         	} else {
         		return false;

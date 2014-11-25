@@ -1,5 +1,4 @@
 'use strict';
-/* global Kinetic */
 
 /**
  * @ngdoc function
@@ -13,78 +12,9 @@ angular.module('ticTacApp')
 		
 		$scope.numberMinutes = 0;
 		$scope.numberHours = 0;
-
-		//Need to clean up this thing because it has a bug, it redraws and change time automatically but often does not display. For that purpose need to set kinetic as a custom directive.
-
-		$scope.kinetic = function() {
-
-			var scene = new Kinetic.Stage({
-				container: 'clock',
-				width: 440,
-				height: 456
-			});
-			
-
-			$scope.currentClock = clockService.generatedTime();
-			console.log($scope.currentClock);
-
-			var imageClock = new Image();
-
-			imageClock.onload = function() {
-				var clock = new Kinetic.Image({
-					x: 0,
-					y: 0,
-					image: imageClock,
-					width: 440,
-				});
-				
-				var clockImageLayer = new Kinetic.Layer();
-				clockImageLayer.add(clock);
-				scene.add(clockImageLayer);
-			};
-			imageClock.src=clockService.getClockSrc();
-
-			var firstHandClockImage = new Image();
-
-			firstHandClockImage.onload = function() {
-				var firstHandClock = new Kinetic.Image({
-					x: scene.getWidth()/2.01,
-					y: scene.getHeight()/2.09,
-					image: firstHandClockImage,
-					width: 6,
-					height: 120,
-					rotation: $scope.currentClock.minutesTransf
-				});
-				var firstHandClockImageLayer = new Kinetic.Layer();
-
-				firstHandClockImageLayer.add(firstHandClock);
-				scene.add(firstHandClockImageLayer);
-
-			}; 
-			firstHandClockImage.src='/images/firstHand.png';
-
-
-			var secondHandClockImage = new Image();
-			secondHandClockImage.onload = function() {
-				var secondHandClock = new Kinetic.Image({
-					x: scene.getWidth()/2.01,
-					y: scene.getHeight()/2.09,
-					image: secondHandClockImage,
-					width: 6,
-					height: 80,
-					rotation: $scope.currentClock.hoursTransf
-				});
-				var secondHandClockImageLayer = new Kinetic.Layer();
-
-				secondHandClockImageLayer.add(secondHandClock);
-				scene.add(secondHandClockImageLayer);
-			}; 
-			secondHandClockImage.src='/images/secondHand.png';
-		};
-		if (clockService.getInitState === 0) {
-			$scope.kinetic();
-			clockService.setInitState = 1;
-		}
+		$scope.generatedHours = clockService.getClockTime().hours;
+		$scope.generatedMinutes = clockService.getClockTime().minutes;
+		//console.log(clockService.getClockTime());
 
 		$scope.addNumberMinutes = function() {
 			if($scope.numberMinutes<55){
@@ -110,20 +40,15 @@ angular.module('ticTacApp')
 			}
 		};
 
-		$scope.reinit = function() {
-			clockService.setInitState = 0;
-		}
-
 		$scope.displayNgDialog = function(){
 			var input = {};
 			input.hours = $scope.numberHours;
 			input.minutes = $scope.numberMinutes;
-			var isGood = clockService.checkInputAndTime(input, $scope.currentClock);
-			console.log(isGood);
+			var isGood = clockService.checkInputAndTime(input);
 			if (isGood) {
 				ngDialog.open({ template: 'views/perfectChoice.html' });
 			} else {
-				ngDialog.open({ template: 'views/notgoodChoice.html', controller: 'GameCtrl'});
+				ngDialog.open({ template: 'views/notgoodChoice.html', controller:'GameCtrl'});
 			}
 		};
   });
