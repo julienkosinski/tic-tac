@@ -14,6 +14,7 @@ angular.module('ticTacApp')
 		$scope.numberHours = 0;
 		$scope.generatedHours = clockService.getClockTime().hours;
 		$scope.generatedMinutes = clockService.getClockTime().minutes;
+		
 		//console.log(clockService.getClockTime());
 
 		$scope.addNumberMinutes = function() {

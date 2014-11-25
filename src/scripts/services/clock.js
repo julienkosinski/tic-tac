@@ -1,7 +1,5 @@
 'use strict';
 
-/* global Kinetic */
-
 /**
  * @ngdoc service
  * @name ticTacApp.clock
@@ -14,6 +12,7 @@ angular.module('ticTacApp')
     // AngularJS will instantiate a singleton by calling "new" on this function
     var clockSrc = '/images/clock1.png';
     var clockTime = {};
+    clockTime.dayState = 'Matin';
     function generateTime(hours, minutes){
     	if (minutes === 60) {
     		clockTime.minutes = 0;
@@ -26,6 +25,7 @@ angular.module('ticTacApp')
 
     	clockTime.minutesTransf = (minutes/(60/360))+180;
     	if (hours > 12) { // Because it is in french hour format
+    		clockTime.dayState = 'Après-midi';
     		if(minutes === 60) {
     			minutes = 2;
     		}

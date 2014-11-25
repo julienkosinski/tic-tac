@@ -1,5 +1,7 @@
 'use strict';
 
+/* global Kinetic */
+
 /**
  * @ngdoc directive
  * @name ticTacApp.directive:kinetic
@@ -10,8 +12,10 @@ angular.module('ticTacApp')
   .directive('kinetic', function (clockService) {
 	return {
 		restrict: 'A',
+		controller: 'GameCtrl',
 
-		link: function(element, attrs) {
+		link: function(scope, element, attrs) {
+
 			var scene = new Kinetic.Stage({
 				container: 'clock',
 				width: 440,
@@ -72,6 +76,11 @@ angular.module('ticTacApp')
 				scene.add(secondHandClockImageLayer);
 			}; 
 			secondHandClockImage.src='/images/secondHand.png';
+
+			scope.generatedHours = clockService.getClockTime().hours;
+			scope.generatedMinutes = clockService.getClockTime().minutes;
+			scope.dayState = clockService.getClockTime().dayState;
+			console.log(clockService.getClockTime());
 		}
     };
   });
