@@ -15,8 +15,6 @@ angular.module('ticTacApp')
 		$scope.generatedHours = clockService.getClockTime().hours;
 		$scope.generatedMinutes = clockService.getClockTime().minutes;
 		
-		//console.log(clockService.getClockTime());
-
 		$scope.addNumberMinutes = function() {
 			if($scope.numberMinutes<55){
 				$scope.numberMinutes+=5;
@@ -47,9 +45,18 @@ angular.module('ticTacApp')
 			input.minutes = $scope.numberMinutes;
 			var isGood = clockService.checkInputAndTime(input);
 			if (isGood) {
-				ngDialog.open({ template: 'views/perfectChoice.html' });
+				ngDialog.openConfirm({ template: 'views/perfectChoice.html',controller:'GameCtrl' });
 			} else {
-				ngDialog.open({ template: 'views/notgoodChoice.html', controller:'GameCtrl'});
+				ngDialog.openConfirm({ template: 'views/notgoodChoice.html', controller:'GameCtrl'});
+			}
+		};
+
+		$scope.reinit = function(){
+			if($scope.reload === 1) {
+				$scope.reload = 0;
+			}
+			else {
+				$scope.reload = 1;
 			}
 		};
   });

@@ -21,8 +21,7 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/main.html'
       })
       .when('/game', {
         templateUrl: 'views/game.html',
@@ -30,11 +29,10 @@ angular
       })
       .when('/options', {
         templateUrl: 'views/options.html',
-        controller: 'GameCtrl'
+        controller: 'OptionsCtrl'
       })
       .when('/credits', {
-        templateUrl: 'views/credits.html',
-        controller: 'GameCtrl'
+        templateUrl: 'views/credits.html'
       })
       .otherwise({
         redirectTo: '/'

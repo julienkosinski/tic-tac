@@ -3,13 +3,17 @@ body {
   background-size: cover;
 }
 
+#game{
+	margin: auto;
+}
+
 .nav-like ul li {list-style-type: none;}
 
 .nav-like {
 	text-align: center;
 }
 
-.button span {
+.button span, #logo span {
 	text-indent: -9999999px;
 	display: inline-block;
 }
@@ -38,6 +42,18 @@ body {
     height:111px;
 }
 
+#reinit {
+	background:url("/images/button_replay.png") no-repeat;
+	width:429px;
+    height:111px;
+}
+
+#success {
+	background:url("/images/success.png") no-repeat;
+	width:429px;
+    height:111px;
+}
+
 #clock {
 	width: 440px;
 	height: 456px;
@@ -62,6 +78,7 @@ body {
 
 .choice {
 	display: inline-block;
+	vertical-align: top;
 }
 
 #check {
@@ -71,8 +88,50 @@ body {
 	display: block;
 }
 
-.number {
-	display: inline-block;
+#logo {
+	height: 151px;
+	width: 478px;
+	background:url("/images/title.png") no-repeat;
+	text-indent: -9999999px;
+	margin:auto;
+}
+
+.input {
+	
+}
+
+.return {
+	position: absolute;
+	margin-top: 20px;
+	margin-left: 20px;
+	background:url("/images/return.png") no-repeat;
+	height: 117px;
+	width: 117px;
+}
+
+#clock1 {
+	height: 456px;
+	width: 440px;
+	margin-top: 120px;
+	background:url("/images/clock1.png") no-repeat;
+}
+
+#clock2 {
+	height: 456px;
+	width: 440px;
+	margin-top: 120px;
+	background:url("/images/clock2.png") no-repeat;
+}
+
+#clock3 {
+	height: 456px;
+	width: 440px;
+	margin-top: 120px;
+	background:url("/images/clock3.png") no-repeat;
+}
+
+#credits-element p, #credits-element h1 {
+	text-align: center;
 }
 
 /*body {
