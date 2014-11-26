@@ -52,7 +52,7 @@ angular.module('ticTacApp')
         generatedTime: function() {
         	// Return a random Hour and minute and timeState
         	var minutes = _.sample([5,10,15,20,25,30,35,40,45,50,55,60]); // Here, 60 minutes == 0 minutes to have good calculation :-).
-        	var hours = _.random(24);
+        	var hours = _.random(23);
         	clockTime = generateTime(hours, minutes);
         	
         	return clockTime;
